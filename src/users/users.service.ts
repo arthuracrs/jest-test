@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import axios from 'axios';
 import { UsersRepository } from './users.repository';
 
 @Injectable()
@@ -25,5 +26,10 @@ export class UsersService {
 
   public destroy({ name }): any {
     return this.usersRepository.destroy({ name });
+  }
+
+  public async axios(): Promise<any> {
+    const { data } = await axios.get(`http://localhost:3005/test`);
+    return data;
   }
 }
